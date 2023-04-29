@@ -34,4 +34,8 @@ const salao = new Schema ({
         default : Date.now,
     },
 
-})
+});
+
+salao.index({geo: '2dsphere'})
+
+module.exports = mongoose.model('Salao', salao)
