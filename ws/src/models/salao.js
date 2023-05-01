@@ -40,7 +40,6 @@ const salao = new Schema ({
         type : Date,
         default : Date.now,
     },
-
 });
 
 function coordinatesLimit(val) {

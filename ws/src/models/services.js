@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const servicos = new Schema ({
     salaoId : {
-        types : mongoose.Types.ObjectId,
+        type : Schema.Types.ObjectId,
         ref : 'Salao',
     },
     titulo : {
