@@ -26,8 +26,15 @@ const salao = new Schema ({
         cidade: String
     },
     geo : {
-        tipo : String,
-        coordinate : Array,
+        type : {
+            type: String,
+            enum: ['Point'],
+            required: true
+        },
+        coordinates : {
+            type: [Number],
+            required: true
+        }
     },
     dataCadastro :  {
         type : Date,
@@ -36,6 +43,8 @@ const salao = new Schema ({
 
 });
 
-salao.index({geo: '2dsphere'})
+function coordinatesLimit(val) {
+    return val.length === 2 && val.every(v => typeof v === 'number');
+}
 
-module.exports = mongoose.model('Salao', salao)
+module.exports = mongoose.model('Salao', salao);

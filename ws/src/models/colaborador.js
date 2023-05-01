@@ -36,7 +36,44 @@ const colaborador = new Schema ({
         required : [true, "Esse campo é obrigatório! "],
         enum : ["A", "I"],
         default : ['A']
-
+    },
+    contaBancaria : {
+        titular : {
+            type : String,
+            required : true
+        },
+        cpfCnpj : {
+            type : String,
+            required : true
+        },
+        banco : {
+            type : String,
+            required : true
+        },
+        tipo : {
+            type : String,
+            required : true
+        },
+        agencia : {
+            type : String,
+            required : true
+        },
+        numero : {
+            type : String,
+            required : true
+        },
+        dv : {
+            type : String,
+            required : true
+        },
+    },
+    recipientId : {
+        type : String,
+        required : true
+    },
+    dataCadastro :  {
+        type : Date,
+        default : Date.now,
     },
 })
 
