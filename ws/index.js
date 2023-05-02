@@ -3,11 +3,13 @@ const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')
 const app = express();
+const bbBodyParser = require('busboy-body-parser')
 const port = 8000;
 
 // Middleware
 app.use(morgan('dev'));
 app.use(cors());
+app.use(bbBodyParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
