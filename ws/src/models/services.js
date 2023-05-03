@@ -34,7 +34,7 @@ const servicos = new Schema ({
         type : String,
         required : [true, "Esse campo é obrigatório! "],
         enum : ["A", "I", "E"],
-        default : ['A']
+        default : 'A'
     },
     dataCadastro :  {
         type : Date,

@@ -1,0 +1,9 @@
+ws/.env
+# Node.js
+ws/node_modules/
+ws/npm-debug.log*
+ws/yarn-debug.log*
+ws/yarn-error.log*
+
+
+
