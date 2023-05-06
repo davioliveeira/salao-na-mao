@@ -118,5 +118,21 @@ router.put('/:id', upload.array('image'), async (req, res) => {
     }
 })
 
+/*  FAZ DELETE DE QUALQUER SERVIÇO  */ 
+router.post('/delete-file', async (req, res) => {
+  try {
+    const { id } = req.body;
+    
+    // DELETING AWS ...
+    await deleteFile(id);
 
+    // DELETING DB ...
+    await Arquivo.findOneAndDelete(id);
+
+    res.status(201).json({message: `Successfully deleted file : ${id}`});
+  } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: true, message: err.message });
+  }
+});
 module.exports = router ;
