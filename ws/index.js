@@ -17,7 +17,9 @@ app.use(cors());
 
 // Routes 
 app.use('/salao', require('./src/routes/salao.routes.js'));
-app.use('/servicos', require('./src/routes/servicos.routes.js'));
+app.use('/servicos', require('./src/routes/servicos.routes.js')); 
+app.use('/horarios', require('./src/routes/horarios.routes.js'));
+app.use('/colaboradores', require('./src/routes/colaboradores.routes.js'));
 
 
 
