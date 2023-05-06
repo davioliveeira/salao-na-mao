@@ -3,15 +3,15 @@ const Schema = mongoose.Schema;
 
 const horario = new Schema ({
     salaoId : {
-        types : mongoose.Types.ObjectId,
+        type : mongoose.Schema.Types.ObjectId,
         ref : 'Salao',
     },
     especialidades: {
-        types : mongoose.Types.ObjectId,
+        type : mongoose.Schema.Types.ObjectId,
         ref : 'Especialidades',
     },
     colaborador: {
-        types : mongoose.Types.ObjectId,
+        type : mongoose.Schema.Types.ObjectId,
         ref : 'Colaborador',
     },
     dias :{
@@ -30,8 +30,6 @@ const horario = new Schema ({
         type : Date,
         default : Date.now,
     },
-
 });
 
-
-module.exports = mongoose.model('Horario', horario)
+module.exports = mongoose.model('Horario', horario);
