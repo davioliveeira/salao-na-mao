@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
-const URI = 'mongodb+srv://davioliveeira:tsQBSXTtiHwferuh@salaonamao.kdhoh9j.mongodb.net/?retryWrites=true&w=majority';
+const dotenv = require('dotenv');
+dotenv.config()
+
+const URI = `${process.env.URL_DB}`
 
 mongoose.set('useNewUrlParser', true, 'useFindAndModify', false, 'useUnifiedTopology', true);
 
