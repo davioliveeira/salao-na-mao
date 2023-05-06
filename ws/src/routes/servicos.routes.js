@@ -18,6 +18,30 @@ dotenv.config()
 const storage = multer.memoryStorage()
 const upload = multer({ storage: storage })
 
+
+/*  PROCURA TODOS OS SERVICOS DE UM SALAO  */ 
+router.get('/salao/:salaoId', async (req, res) => {
+  try {
+    let servicesSalao = [];
+    const services = await Servico.find({
+      salaoId: req.params.salaoId,
+      status : { $ne: 'E' },
+    })
+
+    for (let service of services) {
+      const arquivos = await Arquivo.find({
+        model: "Servico",
+        referenceId: service._id,
+      })
+      servicesSalao.push({ ...service, arquivos })
+    }
+    res.status(201).json({message : `Foram encontrados ${servicesSalao.length} serviços!`, servicos : servicesSalao})
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: true, message: err.message });
+  }
+})
+
 /*  CRIA SERVIÇO E FAZ UPLOAD DE IMG DO SERVICO */ 
 router.post('/', upload.array('image'), async (req, res) => {
       try {  
@@ -118,7 +142,7 @@ router.put('/:id', upload.array('image'), async (req, res) => {
     }
 })
 
-/*  FAZ DELETE DE QUALQUER SERVIÇO  */ 
+/*  FAZ DELETE DE QUALQUER FILE  */ 
 router.post('/delete-file', async (req, res) => {
   try {
     const { id } = req.body;
@@ -130,6 +154,21 @@ router.post('/delete-file', async (req, res) => {
     await Arquivo.findOneAndDelete(id);
 
     res.status(201).json({message: `Successfully deleted file : ${id}`});
+  } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: true, message: err.message });
+  }
+});
+
+
+/*  FAZ DELETE DE QUALQUER SERVICE  */ 
+router.post('/delete-service/:id', async (req, res) => {
+  try {
+    const { id } = req.params
+
+    await Servico.findOneAndDelete(id,{ status: 'E' })
+    res.status(201).json({message : `Deleting service with id : ${id}`})
+    
   } catch (err) {
       console.error(err);
       res.status(500).json({ error: true, message: err.message });
