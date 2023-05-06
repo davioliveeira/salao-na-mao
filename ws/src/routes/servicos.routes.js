@@ -33,7 +33,7 @@ router.get('/salao/:salaoId', async (req, res) => {
         model: "Servico",
         referenceId: service._id,
       })
-      servicesSalao.push({ ...service, arquivos })
+      servicesSalao.push({ ...service._doc, arquivos })
     }
     res.status(201).json({message : `Foram encontrados ${servicesSalao.length} serviços!`, servicos : servicesSalao})
   } catch (err) {
