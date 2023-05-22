@@ -3,17 +3,17 @@ const Schema = mongoose.Schema;
 
 const salaoColaborador = new Schema ({
     salaoId : {
-        types : mongoose.Types.ObjectId,
+        type : mongoose.Types.ObjectId,
         ref : 'Salao',
     },
     colaboradorId : {
-        types : mongoose.Types.ObjectId,
+        type : mongoose.Types.ObjectId,
         ref : 'Colaborador',
     },
     status: {
         type : String,
         required : [true, "Esse campo é obrigatório! "],
-        enum : ["A", "I"],
+        enum : ["A", "I","E"],
         default : ['A']
     },
     dataCadastro :  {
@@ -23,5 +23,4 @@ const salaoColaborador = new Schema ({
 
 });
 
-
-module.exports = mongoose.model('SalaoColaborador', salaoColaborador)
+module.exports = mongoose.model('SalaoColaborador', salaoColaborador);

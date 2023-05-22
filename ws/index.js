@@ -3,8 +3,6 @@ const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')
 const app = express();
-const busboyBodyParser = require('busboy-body-parser')
-const busboy = require('connect-busboy')
 const multer = require('multer');
 const port = 8080;
 

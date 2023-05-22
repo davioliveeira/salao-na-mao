@@ -3,18 +3,18 @@ const Schema = mongoose.Schema;
 
 const colaboradorServicos = new Schema ({
     salaoId : {
-        types : mongoose.Types.ObjectId,
+        type : mongoose.Types.ObjectId,
         ref : 'Salao',
     },
     servicoId : {
-        types : mongoose.Types.ObjectId,
+        type : mongoose.Types.ObjectId,
         ref : 'Servico',
     },
     status: {
         type : String,
         required : [true, "Esse campo é obrigatório! "],
         enum : ["A", "I"],
-        default : ['A']
+        default : "A"
     },
     dataCadastro :  {
         type : Date,
@@ -23,5 +23,4 @@ const colaboradorServicos = new Schema ({
 
 });
 
-
-module.exports = mongoose.model('ColaboradorServicos', colaboradorServicos)
+module.exports = mongoose.model('ColaboradorServicos', colaboradorServicos);

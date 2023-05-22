@@ -2,11 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const colaborador = new Schema ({
-    nome: {
-        type : String,
-        required : [true, "Esse campo é obrigatório! "]
-    },
-    telefone: {
+    name: {
         type : String,
         required : [true, "Esse campo é obrigatório! "]
     },
@@ -14,11 +10,20 @@ const colaborador = new Schema ({
         type : String,
         required : [true, "Esse campo é obrigatório! "]
     },
-    senha: {
+    description: {
+        type: String,
+        default: null,
+    },
+    type: {
         type : String,
-        required : [true, "Esse campo é obrigatório! "]
+        enum : ["individual", "company"],
+        default : null,
     },
     foto: {
+        type: String,
+        default: null,
+    },
+    document: {
         type : String,
         required : [true, "Esse campo é obrigatório! "]
     },
@@ -31,38 +36,52 @@ const colaborador = new Schema ({
         enum : ["M", "F"],
         required : [true, "Esse campo é obrigatório! "]
     },
+    telefone: {
+        type: String,
+        required: true,
+        unique: true,
+      },
     status: {
         type : String,
         required : [true, "Esse campo é obrigatório! "],
         enum : ["A", "I"],
         default : ['A']
     },
-    contaBancaria : {
-        titular : {
+    default_bank_account : {
+        holder_name : {
             type : String,
             required : true
         },
-        cpfCnpj : {
+        holder_document : {
             type : String,
             required : true
         },
-        banco : {
+        holder_type : {
+            type : String,
+            enum : ["individual", "company"],
+            required : true
+        },
+        bank : {
             type : String,
             required : true
         },
-        tipo : {
+        branch_number : {
             type : String,
             required : true
         },
-        agencia : {
+        branch_check_digit : {
             type : String,
             required : true
         },
-        numero : {
+        account_number : {
             type : String,
             required : true
         },
-        dv : {
+        account_check_digit : {
+            type : String,
+            required : true
+        },
+        type : {
             type : String,
             required : true
         },
